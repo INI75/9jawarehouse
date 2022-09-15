@@ -4,23 +4,15 @@ import 'package:warehouse/widgets/homepage/green_yellow_box.dart';
 import '../widgets/homepage/post.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key, required this.ctx}) : super(key: key);
-  final BuildContext ctx;
+  const HomePage({Key? key, }) : super(key: key);
+
   @override
   State<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
   @override
-  // void initState() {
-  //   showModalBottomSheet(
-  //       context: context,
-  //       builder: (context) {
-  //         return Container(height: 200, width: 400, color: Colors.red);
-  //       });
-  //   // TODO: implement initState
-  //   super.initState();
-  // }
+
 
   //// provider for boxes details  make map for
   final List<String> _list = [

@@ -2,7 +2,9 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:warehouse/screen/homepage.dart';
-import 'package:warehouse/widgets/homepage/locator.dart';
+import 'package:warehouse/widgets/app/app_button.dart';
+import '../widgets/homepage/app_bar.dart';
+import '../widgets/homepage/dot.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -13,29 +15,18 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   int _selectedIndex = 0;
+  final List _screens = [
+    HomePage(),
+    Container(),
+    Container(),
+    Container(),
+  ];
   final _appgreen = const Color.fromRGBO(28, 190, 142, 1);
-  // var didChange = true;
-
-  // @override
-  // void didChangeDependencies() {
-  //   if (didChange) {
-  //     showModalBottomSheet(
-  //         context: context,
-  //         builder: (context) => Container(
-  //               height: 200,
-  //               width: 300,
-  //               color: Colors.amber,
-  //             ));
-  //     didChange = false;
-  //   }
-  //   // TODO: implement didChangeDependencies
-  //   super.didChangeDependencies();
-  // }
 
   @override
   void initState() {
     Timer(
-        Duration(seconds: 1),
+        const Duration(seconds: 1),
         (() => showModalBottomSheet(
               context: context,
               builder: (context) => Container(
@@ -67,8 +58,8 @@ class _HomeState extends State<Home> {
                         ),
                       ),
                       Container(
-                        margin: const EdgeInsets.symmetric(
-                            horizontal: 18, vertical: 10),
+                        margin: const EdgeInsets.only(
+                            left: 18, right: 18, top: 13, bottom: 17),
                         child: const Text(
                             'To access business tools we need to provide some ' +
                                 'information about your business',
@@ -76,8 +67,15 @@ class _HomeState extends State<Home> {
                             style: TextStyle(height: 1.6),
                             softWrap: true),
                       ),
-
-                      
+                      const DotItem(item: 'Provide Business information'),
+                      const DotItem(item: 'Verify your business'),
+                    const  SizedBox(height: 21),
+                      Align(
+                        alignment: Alignment.center,
+                        child: AppBotton(tap: () {}, title: 'Get Started'),
+                      ),
+                      const SizedBox(height: 11),
+                   
                     ]),
               ),
             )));
@@ -93,43 +91,16 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    final List _screens = [
-      HomePage(
-        ctx: context,
-      ),
-      Container(),
-      Container(),
-      Container(),
-    ];
     return Scaffold(
       appBar: _selectedIndex == 0
-          ? PreferredSize(
-              preferredSize: const Size.fromHeight(60),
-              child: Container(
-                margin: const EdgeInsets.only(top: 30),
-                // color: Colors.amber,
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 16, vertical: 5),
-                child: Row(children: [
-                  Locator(context1: context),
-                  Expanded(child: Container()),
-                  IconButton(
-                    onPressed: () {},
-                    icon: const Icon(Icons.add_circle_outline),
-                  ),
-                  IconButton(
-                      onPressed: () {},
-                      icon: const Icon(Icons.notifications_outlined))
-                ]),
-              ),
+          ? const PreferredSize(
+              preferredSize: Size.fromHeight(60),
+              child: CustomAppBar(),
             )
           : null,
 
       ///
-      ///
-
       body: SafeArea(child: _screens.elementAt(_selectedIndex)),
-
       ////
       bottomNavigationBar: BottomNavigationBar(
         items: [
