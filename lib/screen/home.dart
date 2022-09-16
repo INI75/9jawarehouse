@@ -21,8 +21,8 @@ class _HomeState extends State<Home> {
     Container(),
     Container(),
   ];
-  final _appgreen = const Color.fromRGBO(28, 190, 142, 1);
-
+  static const _appgreen = Color.fromRGBO(28, 190, 142, 1);
+  static const AlignmentGeometry center = Alignment.center;
   @override
   void initState() {
     Timer(
@@ -30,7 +30,7 @@ class _HomeState extends State<Home> {
         (() => showModalBottomSheet(
               context: context,
               builder: (context) => Container(
-                height: 400,
+                height: 350,
                 color: Colors.white,
                 child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -69,13 +69,21 @@ class _HomeState extends State<Home> {
                       ),
                       const DotItem(item: 'Provide Business information'),
                       const DotItem(item: 'Verify your business'),
-                    const  SizedBox(height: 21),
+                      const SizedBox(height: 21),
                       Align(
-                        alignment: Alignment.center,
+                        alignment: center,
                         child: AppBotton(tap: () {}, title: 'Get Started'),
                       ),
-                      const SizedBox(height: 11),
-                   
+                      const SizedBox(height: 10),
+                      Align(
+                        alignment: center,
+                        child: TextButton(
+                            onPressed: () => Navigator.pop(context),
+                            child: const Text(
+                              'Not Now',
+                              style: TextStyle(color: Colors.black),
+                            )),
+                      )
                     ]),
               ),
             )));
