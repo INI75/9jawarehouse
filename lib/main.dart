@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:warehouse/screen/create_post.dart';
 import 'package:warehouse/screen/home.dart';
 import 'package:warehouse/screen/profile_screen.dart';
 
@@ -19,8 +20,11 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSwatch()
               .copyWith(primary: const Color.fromRGBO(28, 190, 142, 1)),
         ),
-        home: Home()
-
+        home: const Home(),
+   routes: {
+     CreatePost.routeName :(context) => CreatePost(),
+     
+   },
         // ProfileScreen(),
         );
   }
